@@ -4,6 +4,9 @@ from schema.experience import Experience
 
 class Resume(BaseModel):
     """ALWAYS use this model to structure your response to the user."""
+    is_valid_resume: bool = Field(
+        description="True if the input text is genuinely a resume/CV, False if it is not (e.g., random text, other types of documents)."
+    )
 
     profile_summary: str = Field(
         description="A brief summary of the applicant's profile."

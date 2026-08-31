@@ -14,6 +14,7 @@ class JDExtractAgent:
             Bạn là một trợ lý phân tích mô tả công việc(JD).
             
             Nhiệm vụ của bạn là phân tích mô tả cộng việc nằm giữa ba dấu(```) và trích xuất thông tin có cấu trúc từ đó.
+            Nếu văn bản đó không phải JD, hãy đặt is_valid_jd = False và để các field khác rỗng.
 
             Đối với mỗi mô tả công việc, bạn phải trích xuất tất cả các trường thông tin bao gồm:
 
@@ -31,7 +32,7 @@ class JDExtractAgent:
             Quan trọng: Tất cả văn bản được trích xuất bằng tiếng việt.
             """
             ),
-            ("user","Trích xuất thông tin từ JD sau: ```{jd_text} ```")
+            ("user","Trích xuất thông tin từ JD sau: ```{jd_text}```")
         ])
         self.chain = self.prompt | self.structured_llm
 

@@ -7,6 +7,7 @@ from schema.evaluation import EvaluationResult
 class JDResumeState(TypedDict):
     resume_path: Optional[str]
     jd_path: Optional[str]
+    jd_text: Optional[str]
     resume: Optional[Resume]
     jd: Optional[Jd]
     errors: Annotated[list, operator.add]

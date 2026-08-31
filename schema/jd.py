@@ -4,6 +4,10 @@ from typing import List
 class Jd(BaseModel):
     """ Model representing the job description of an applicant in a resume."""
     
+    is_valid_jd: bool = Field(
+        description="True if the input text is genuinely a Jobs Description, False if it is not (e.g., random text, other types of documents)."
+    )
+
     job_summary: str = Field(description="A brief summary of the job description.")
 
     required_hard_skills: List[str] = Field(

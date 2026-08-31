@@ -15,6 +15,7 @@ class ResumeExtractAgent:
             ("system",
                 """Bạn là trợ lý sơ yếu lý lịch chuyên nghiệp.
                 nhiệm vụ của bạn là phân tích CV được đặt trong backstrick 3 dấu (```) của ứng viên và trích xuất CV từ đó.
+                Nếu văn bản đó không phải CV, đặt is_valid_resume = False và để các field khác rỗng.
                 Bỏ qua các thông tin như địa chỉ, email, số điện thoại, ....
                 """,
             ),

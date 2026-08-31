@@ -9,6 +9,8 @@ def resume_node(state: JDResumeState,llm) -> dict:
     try:
         resume_agent = ResumeExtractAgent(llm)
         resume = resume_agent.extract(resume_path=state["resume_path"])
+        if not resume.is_valid_resume:
+            return {"errors": ["File resume không hợp lệ — không phải CV"]}
         return {"resume": resume}
     except Exception as e:
         return {"errors": [f"Error extracting resume: {str(e)}"]}
@@ -16,10 +18,16 @@ def resume_node(state: JDResumeState,llm) -> dict:
 def jd_node(state: JDResumeState,llm) -> dict:
     try:
         jd_agent = JDExtractAgent(llm)
-        jd = jd_agent.extract(jd_path=state["jd_path"])
+        jd = jd_agent.extract(
+            jd_path=state["jd_path"],
+            jd_text=state["jd_text"]
+            )
+        if not jd.is_valid_jd:
+            return {"errors": ["File JD không hợp lệ — không phải mô tả công việc"]}
         return {"jd": jd}
     except Exception as e:
         return {"errors": [f"Error extracting jd: {str(e)}"]}
+
 def evaluation_node(state: JDResumeState, llm) -> dict:
     if state.get("resume") is None or state.get("jd") is None:
         return {"errors": ["Không thể đánh giá vì thiếu resume hoặc jd (bước trích xuất trước đó có thể đã lỗi)"]}

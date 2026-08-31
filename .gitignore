@@ -58,3 +58,5 @@ htmlcov/
 
 # LangChain / LangSmith / Groq cache
 .langchain/
+temp_uploads/
+results.db
