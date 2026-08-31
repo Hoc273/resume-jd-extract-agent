@@ -1,0 +1,11 @@
+services:
+  api:
+    build: .
+    container_name: cv-scoring
+    ports:
+      - "8000:8000"
+    env_file:
+      - .env
+    volumes:
+      - ./results.db:/app/results.db
+    restart: unless-stopped
